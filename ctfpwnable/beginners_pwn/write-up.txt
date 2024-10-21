@@ -1,0 +1,17 @@
+Write up lỗi off-by-one
+1. review code : 
+- tạo 2 mảng your_try và flag chứa 64 byte
+- set buffer cho các luồng vào ra
+- hàm khởi chạy đọc chuỗi được đưa vào max 64 ký tự
+- nếu your_try bằng flag = nhau sẽ in ra yes hàm win đc khởi chạy, ta có flag
+- nếu không bằng nhau sẽ in ra no và out ctrinh
+2. lỗi off-by-one : 
+- off-by-one(lệch 1 bít): hàm scanf("%64s",your_try): nhận giá trị nhập vào từ bàn phím cho đến các kí tự như dấu cách " " 
+hoặc xuống hàng "\n" hoặc cho đến kí tự thứ 64 thì lưu giá trị vào biến your_try trong tham số rồi thêm kí tự null"\x00"
+ở cuối chuỗi kết thúc
+- your-try chỉ được cấp phát 64 bytes, không đủ chứa kí tự null ở cuối nên ký tự null bị chèn sang byte của mảng flag
+- hàm so sánh strncmp so sánh 2 chuỗi. Chuỗi chỉ tính đến khi gặp giá trị null thì kết thúc. 
+3. kịch bản khai thác :
+- nhập vào 1 chuỗi 64 bytes sao cho kí tự đầu là null
+- điều kiện if sẽ so sánh 2 chuỗi null với nhau => khi đó điều kiện 2 chuỗi sẽ bằng nhau vì đều là null
+=> chạy hàm win(), chiếm được shell => done

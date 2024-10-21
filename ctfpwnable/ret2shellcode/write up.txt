@@ -1,0 +1,12 @@
+#6- Kĩ thuật ret2shellcode (Challenge nhà làm)
+
+ret2shellcode : kĩ thuật sử dụng lệnh ret để thực thi shellcode một khi đã biết được địa chỉ 
+chứa shellcode ( NX disabled)
+
+lỗi :
+stack overflow
+NX disabled
+PIE disabled
+
+1. Tìm địa chỉ chứa shellcode mình đã nhập
+2. Stack overflow đến lệnh : ret để chạy shellcode tại địa chỉ đó

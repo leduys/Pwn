@@ -1,0 +1,11 @@
+#5- Lỗi format string - stringzz(picoCTF 2019)
+
+-Hàm yêu cầu cần có format string làm tham số thứ nhất,như printf()
+-Khi muốn in ra 1 chuỗi nào đó đã nhập, nhưng lại không có 
+format string "%s" mà truyền trực tiếp địa chỉ của chuỗi vào :printf(input)
+-Lúc này, tham số thứ nhất là chuỗi input đã nhập, đóng vai trò là 1 format string
+
+=> Khai thác :
+1. Có thể tự do in ra 1 địa chỉ nào đó trong vùng nhớ(stack) của chương trình("%6$x","%22$p")
+2. Có thể tự do in ra 1 giá trị chuỗi kí tự nào đó tại một địa chỉ trong vùng nhớ của chương trình("30$s)
+3. Có thể thay dổi giá trị tại 1 địa chỉ nào đó đã biết trong chương trình("%8$n", "%15$hn", "%16$hhn")

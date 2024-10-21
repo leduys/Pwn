@@ -1,0 +1,33 @@
+#4- sơ lược về shellcode - handy-shellcode(picoctf2019)
+
+c -> assembly -> mã nhị phân máy tính (binary)
+     assembly -> Hex(shellcode)
+
+Shellcode: mã máy thực thi 1 đoạn lệnh nào đó(thường sẽ là đoạn lệnh gọi execve syscall dùng để lấy shell)
+
+
+Khai thác bằng shellcode chỉ có tác dụng khi chế độ bảo vệ NX(No-execute): disabled
+
+
+Viết chương trình khai thác lỗ hổng
+
+system("/bin/sh")(user -codeC)
+execve("/bin/sh")(kernel-linux syscall)
+
+gọi đến hàm execve
+EAX: 0x0b(execve)
+EBX: ??? -> "/bin/sh"(tham số 1)
+"/bin/sh" -> stack
+ESP (Stack pointer) -> /bin/sh
+Push \x00(tránh gây lỗi ctr)
+Push bin/sh
+mov ebx, esp
+
+
+
+ECX: 0
+EDX: 0
+
+
+
+

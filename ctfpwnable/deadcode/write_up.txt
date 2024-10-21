@@ -1,0 +1,17 @@
+#2 - Lỗi Buffer overflow - deadcode (DownUnderCTF 2021)
+
+buffer overflow: lỗi tràn bộ nhớ đệm
+khi một tiến trình lưu dữ liệu vượt ra ngoài biên của một bộ nhớ đệm có chiều dài cố định
+=> ghi đè được các giá trị bên dưới bộ nhớ đệm đã cấp phát
+=> điều khiển được vùng nhớ đó
+
+-stack overflow : tràn bộ đệm ở vùng nhớ stack
+cấp phát bộ nhớ trên stack
+gets(): không giới hạn số lượng kí tự nhập vào
+- heap overflow : tràn bộ nhớ đệm ở vùng heap
+lên kịch bản và khai thác lỗ hổng :
+-tìm cmp(lệnh so sánh trong assem) 2 địa chỉ được so sánh ở stack vs thanh ghi 
+để khai thác => địa chỉ của cmp
+- đặt b* tại hàm gets => địa chỉ gets
+- tính offsec của địa chỉ hàm cmp với hàm get (cmp - get) 
+- viết chương trình khai thác, thêm ký tự bằng số offsec đã tính + với địa chỉ của deadcode

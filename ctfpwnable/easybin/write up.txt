@@ -1,0 +1,13 @@
+#3- Ret-easybin(grabcon)
+
+ret: lệnh return trong assembly
+thực thi lệnh ở return address, lệnh nằm trong địa chỉ trên cùng stack
+thường sử dụng khai thác lỗi stack overflow ở các bài cơ bản
+ => kĩ thuật rop ( return-oriented programing)
+kế hoạch khai thác lỗ hổng : 
+-đặt breakpoint vào 2 địa chỉ
+- b1 : call gets
+- b2 : return
+- tính offsec từ ret -> gets 
+- viết ctrinh khia thác lỗ hổng thêm số offsec đã được tính + với địa chỉ đầu tiên của vuln 
+	
